@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+import uvicorn
 from db import database, User, History
 
 from routes.users import app as user_router
@@ -28,3 +29,6 @@ async def startup():
 async def shutdown():
     if database.is_connected:
         await database.disconnect()
+
+if __name__ == '__main__':
+    uvicorn.run(app)
